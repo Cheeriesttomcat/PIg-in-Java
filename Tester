@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class GameTester
+{
+	public static void main(String[] args)
+	{
+		Game g = new Game();
+		Scanner s = new Scanner(System.in);
+		
+		while (!g.gameOver())
+		{
+			System.out.println(g.getCurrentPlayer().getName() + "'s turn");
+			System.out.print("\tBe a Pig (Y/N)? ");
+			g.getCurrentPlayer().beAPig(s.nextLine().toUpperCase().equals("Y"));
+			g.playGame();
+			System.out.println("Dice: " + g.getPigDice().toString());
+			System.out.println(g.getHuman().toString());
+			System.out.println(g.getComputer().toString());
+		}
+		System.out.println("The winner is " 
+				+ (g.getHuman().getGamePoints() > g.getComputer().getGamePoints() ? g.getHuman().getName() : g.getComputer().getName()));
+	}
+}
