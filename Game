@@ -1,0 +1,117 @@
+//*********************************************************************
+//  Game.java       Author: Howard Akers 
+//  Written: 4/25/2019   Last Modified 4/30/2019
+//
+//  This is the main brain for the game of pig
+//*********************************************************************
+
+public class Game
+{
+	private Player p1, p2, current;
+	private PigDice d;
+	private boolean gameOver;
+	private final int WINNING_SCORE = 100;
+	
+	//-----------------------------------------------------------------
+	//  Constructor!  Here it is!
+	//-----------------------------------------------------------------
+	public Game()
+	{
+		gameOver = false;
+		p1 = new Human();
+		p2 = new Computer();
+		current = p1;
+		d = new PigDice();
+	}
+	
+	//-----------------------------------------------------------------
+	//  Play the game
+	//-----------------------------------------------------------------
+	public boolean playGame()
+	{
+		if (gameOver==false)
+		{
+			current.takeTurn(d);
+			if (current.getPigness() == false)
+			{
+				if (getCurrentPlayer() == p1)
+				{
+					current = getComputer();
+					p2.pigness = true;
+				}
+				else
+				{
+					current = getHuman();
+					p1.pigness = true;
+				}
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+		
+		
+	}
+	
+	//-----------------------------------------------------------------
+	//  Is it over?
+	//-----------------------------------------------------------------
+	public boolean gameOver()
+	{
+		if ((current.getRoundPoints() + current.getGamePoints()) >= WINNING_SCORE)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	//-----------------------------------------------------------------
+	//  Get the current player
+	//-----------------------------------------------------------------
+	public Player getCurrentPlayer()
+	{
+		return current;
+	}
+	
+	//-----------------------------------------------------------------
+	//  Get the human
+	//-----------------------------------------------------------------
+	public Player getHuman()
+	{
+		return p1;
+	}
+	
+	//-----------------------------------------------------------------
+	//  Get the computer
+	//-----------------------------------------------------------------
+	public Player getComputer()
+	{
+		return p2;
+	}
+	
+	//-----------------------------------------------------------------
+	//  Get the dice
+	//-----------------------------------------------------------------
+	public PigDice getPigDice()
+	{
+		return d;
+	}
+	
+	//-----------------------------------------------------------------
+	//  The classic toString!  
+	//-----------------------------------------------------------------
+	public String toString()
+	{
+		return current.toString();
+	}
+	
+}
