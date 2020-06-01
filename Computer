@@ -1,0 +1,34 @@
+//*********************************************************************
+//  Computer.java       Author: Howard Akers 
+//  Written: 4/25/2019   Last Modified 4/30/2019
+//
+//  Defines how a computer player works
+//*********************************************************************
+
+public class Computer extends Player
+{
+	//-----------------------------------------------------------------
+	//  Constructor!  Here it is!
+	//-----------------------------------------------------------------
+	public Computer()
+	{
+		super("Computer");
+	}
+	
+	//-----------------------------------------------------------------
+	//  Will you be a pig?
+	//-----------------------------------------------------------------
+	public boolean beAPig(boolean isPig)
+	{
+		if (roundPoints < 20)
+		{
+			pigness = true;
+			return true;
+		}
+		else
+		{
+			pigness = false;
+			return false;
+		}
+	}
+}
