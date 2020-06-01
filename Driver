@@ -1,0 +1,30 @@
+//*********************************************************************
+//  Driver.java           Author: Howard Akers 
+//  Written: 2/20/2019    Last Modified: 2/21/2019
+//
+//  Test to ensure PairOfDice.java is functional
+//*********************************************************************
+
+public class Driver
+{
+	//-------------------------------------------------------------
+	//  The main block will be trying all the methods
+	//-------------------------------------------------------------
+	public static void main(String[] args)
+	{
+
+		PigDice test;
+		test = new PigDice();
+		System.out.println("The roll works!  It puts out: " + test.roll()); 
+		System.out.println("My toString puts out: " + test.toString()); 
+		test.setDie1(2);
+		System.out.println("After setter sets the first die to 2 getDie1 puts out: " + test.getDie1());
+		test.setDie1(3);
+		System.out.println("Setting die1 to 3 now causes getDie1 to put out: " + test.getDie1());
+		test.setDie2(5);
+		System.out.println("After setter sets the second die at 5 getDie2 puts out: " + test.getDie2());
+		test.setDie2(3);
+		System.out.println("After setting die2 to 1 getDie2 puts out: " + test.getDie2());
+		System.out.println("Now that die1 is set at 3 and die2 is at 1 toString puts out: " + test.toString());
+	}	
+}
