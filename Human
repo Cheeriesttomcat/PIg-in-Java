@@ -1,0 +1,34 @@
+//*********************************************************************
+//  Human.java       Author: Howard Akers 
+//  Written: 4/25/2019   Last Modified 4/30/2019
+//
+//  Defines how a human player works
+//*********************************************************************
+
+public class Human extends Player
+{
+	//-----------------------------------------------------------------
+	//  Constructor!  Here it is!
+	//-----------------------------------------------------------------
+	public Human()
+	{
+		super("Human");
+	}
+	
+	//-----------------------------------------------------------------
+	//  Will you be a pig?
+	//-----------------------------------------------------------------
+	public boolean beAPig(boolean isPig)
+	{
+		if (isPig == true)
+		{
+			pigness = true;
+			return true;
+		}
+		else
+		{
+			pigness = false;
+			return false;
+		}
+	}
+}
