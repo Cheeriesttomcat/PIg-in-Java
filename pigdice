@@ -1,0 +1,47 @@
+/*********************************************************************
+//  PigDice.java       Author: Howard Akers 
+//  Written: 4/4/2019   
+//
+//  Dice that are used for the game of pig
+//*********************************************************************
+
+public class PigDice extends PairOfDice
+{
+	//-----------------------------------------------------------------
+	//  Constructor!  It's Here to lead you to "pair-a-dice"
+	//-----------------------------------------------------------------
+	public PigDice()
+	{
+		super();
+	}
+	
+	//-----------------------------------------------------------------
+	//  Now you're rolling the pig dice! Returns 3 for a single one
+	//  and returns 2 for two ones rolled.
+	//-----------------------------------------------------------------
+	public int roll()
+	{
+		super.roll();
+		if ((super.getDie1() > 1) && (super.getDie2() > 1))
+		{
+			return (super.getDie1() + super.getDie2());
+		}
+		else if ((super.getDie1() == 1) && (super.getDie2() == 1))
+		{
+			return 2;
+		}
+		else 
+		{
+			return 3;
+		}
+	}
+	
+	//-----------------------------------------------------------------
+	//  The classic toString!  
+	//-----------------------------------------------------------------
+	public String toString()
+	{
+		String result = "Die 1 is " + super.getDie1() + " die 2 is " + super.getDie2();
+		return result;
+	}
+}
