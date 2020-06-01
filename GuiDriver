@@ -1,0 +1,114 @@
+import javafx.scene.layout.FlowPane;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.event.ActionEvent;
+import javafx.application.Application;
+
+//*********************************************************************
+//  GuiDriver.java       Author: Howard Akers 
+//  Written: 4/30/2019    
+//
+//  We're going to run our first rendition of the game of pig via this!
+//*********************************************************************
+
+public class GuiDriver extends Application
+{
+	// Class level variables
+	Game g = new Game();
+	private ImageView die1View = new ImageView(g.getPigDice().getDie1Image());
+	private ImageView die2View = new ImageView(g.getPigDice().getDie2Image());
+	private Text humanPoints = new Text("0");
+	private Text compPoints = new Text("0");
+	
+	//-----------------------------------------------------------------
+	//  We're startin it here!
+	//-----------------------------------------------------------------
+	public void start(Stage primaryStage)
+	{
+		humanPoints.setText("" + g.getHuman().toString());			
+		compPoints.setText("" + g.getComputer().toString());
+		
+		Button roll = new Button("Roll");
+		roll.setOnAction(this::processButtonPressRoll);
+		
+		Button pass = new Button("Pass");
+		pass.setOnAction(this::processButtonPressPass);
+		
+		FlowPane pane = new FlowPane(die1View, die2View, pass, roll, compPoints, humanPoints);
+		pane.setHgap(20);
+		pane.setStyle("-fx-background-color: cyan");
+		
+		Scene scene = new Scene(pane, 400, 170);
+
+		primaryStage.setTitle("PIG!");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
+	//-----------------------------------------------------------------
+	//  Functionality for roll presses
+	//-----------------------------------------------------------------
+	public void processButtonPressRoll(ActionEvent event)
+	{
+		if (g.gameOver()==false)
+		{
+			g.getCurrentPlayer().beAPig(true);
+			g.playGame();
+			die1View.setImage(g.getPigDice().getDie1Image());
+			die2View.setImage(g.getPigDice().getDie2Image());
+			humanPoints.setText("" + g.getHuman().toString());			
+			compPoints.setText("" + g.getComputer().toString());
+		}
+		else
+		{
+			compPoints.setText("GAME OVER");
+			if (g.getHuman().getGamePoints() > g.getComputer().getGamePoints())
+			{
+				humanPoints.setText("Player Is the Winner");
+			}
+			else
+			{
+				humanPoints.setText("Computer Is the Winner");
+			}
+		}
+	}
+	
+	//-----------------------------------------------------------------
+	//  Functionality for pass presses
+	//-----------------------------------------------------------------
+	public void processButtonPressPass(ActionEvent event)
+	{
+		if (g.gameOver()==false)
+		{
+			g.getCurrentPlayer().beAPig(false);
+			g.playGame();
+			die1View.setImage(g.getPigDice().getDie1Image());
+			die2View.setImage(g.getPigDice().getDie2Image());
+			humanPoints.setText("" + g.getHuman().toString());			
+			compPoints.setText("" + g.getComputer().toString());
+		}
+		else
+		{
+			compPoints.setText("GAME OVER");
+			if (g.getHuman().getGamePoints() > g.getComputer().getGamePoints())
+			{
+				humanPoints.setText("Player Is the Winner");
+			}
+			else
+			{
+				humanPoints.setText("Computer Is the Winner");
+			}
+		}
+	}
+	
+	//-----------------------------------------------------------------
+	//  Main method
+	//-----------------------------------------------------------------
+    public static void main(String[] args)
+    {
+        launch(args);
+    }
+}
