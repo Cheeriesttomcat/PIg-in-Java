@@ -1,0 +1,101 @@
+//*********************************************************************
+//  Player.java       Author: Howard Akers 
+//  Written: 4/25/2019   Last Modified 4/30/2019
+//
+//  It's abstract!  This defines the life of a human or computer player
+//*********************************************************************
+
+public abstract class Player
+{
+	protected String name;
+	protected int roundPoints, gamePoints;
+	protected boolean pigness;
+	
+	//-----------------------------------------------------------------
+	//  Constructor!  Here it is!
+	//-----------------------------------------------------------------
+	public Player(String name)
+	{
+		roundPoints = 0;
+		gamePoints = 0;
+		pigness = true;
+		this.name = name;
+	}
+	
+	//-----------------------------------------------------------------
+	//  It's a getter for name!
+	//-----------------------------------------------------------------
+	public String getName()
+	{
+		return name;
+	}
+	
+	//-----------------------------------------------------------------
+	//  This will give points for your current round
+	//-----------------------------------------------------------------
+	public int getRoundPoints()
+	{
+		return roundPoints;
+	}
+	
+	//-----------------------------------------------------------------
+	//  This will give points for the whole match
+	//-----------------------------------------------------------------
+	public int getGamePoints()
+	{	
+		return (gamePoints + roundPoints);
+	}
+	
+	//-----------------------------------------------------------------
+	//  This will tell you if we want to keep goin
+	//-----------------------------------------------------------------
+	public boolean getPigness()
+	{
+		return pigness;
+	}
+	
+	//-----------------------------------------------------------------
+	//  This will take a turn
+	//-----------------------------------------------------------------
+	public void takeTurn(PigDice p)
+	{	
+		if (pigness == true)
+		{
+			int holder = p.roll();
+			if (holder > 3)
+			{
+				roundPoints = holder + roundPoints;
+			}
+			else if (holder == 3)
+			{
+				roundPoints = 0;
+				pigness = false;
+			}
+			else
+			{
+				roundPoints = 0;
+				gamePoints = 0;
+				pigness = false;
+			}	
+		}
+		else
+		{
+			gamePoints = gamePoints + roundPoints;
+			roundPoints = 0;
+		}
+	}
+	
+	//-----------------------------------------------------------------
+	//  Will you be a pig?
+	//-----------------------------------------------------------------
+	public abstract boolean beAPig(boolean isPig);
+	
+	//-----------------------------------------------------------------
+	//  The classic toString!  
+	//-----------------------------------------------------------------
+	public String toString()
+	{
+		String result = "The " + name + " has "+ gamePoints + " points total, " + roundPoints + " for the round";
+		return result;
+	}
+}
