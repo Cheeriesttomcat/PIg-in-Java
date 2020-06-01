@@ -1,0 +1,87 @@
+import javafx.scene.image.Image;
+
+//*********************************************************************
+//  PairOfDice.java       Author: Howard Akers 
+//  Written: 2/20/2019    Last Modified: 4/4/2019
+//
+//  Stop.  Think twice.  Now you and I can use a pair of dice
+//*********************************************************************
+
+public class PairOfDice
+{
+	private Die die1, die2; // The dice in use
+	
+	//-----------------------------------------------------------------
+	//  Constructor!  Here it is!
+	//-----------------------------------------------------------------
+	public PairOfDice()
+	{
+		die1 = new Die();
+		die2 = new Die();
+	}
+	
+	//-----------------------------------------------------------------
+	//  It's the first getter!  Get em!
+	//-----------------------------------------------------------------
+	public int getDie1()
+	{
+		return die1.getFaceValue();
+	}
+	
+	//-----------------------------------------------------------------
+	//  It's the getter again.  It's time for more getting!
+	//-----------------------------------------------------------------
+	public int getDie2()
+	{
+		return die2.getFaceValue();
+	}
+	
+	//-----------------------------------------------------------------
+	//  Setters are happening!  Here's the first one!
+	//-----------------------------------------------------------------
+	public void setDie1(int value)
+	{
+		die1.setFaceValue(value);
+	}
+	
+	//-----------------------------------------------------------------
+	//  It's the setter again! This time it's die 2!
+	//-----------------------------------------------------------------
+	public void setDie2(int value)
+	{
+		die2.setFaceValue(value);
+	}
+	
+	//-----------------------------------------------------------------
+	//  Roll both dice and return a sum
+	//-----------------------------------------------------------------
+	public int roll()
+	{
+		return die1.roll() + die2.roll();
+	}
+	
+	//-----------------------------------------------------------------
+	//  It's the first getter for an image.  Get it!
+	//-----------------------------------------------------------------
+	public Image getDie1Image()
+	{
+		return die1.getDieImage();
+	}
+	
+	//-----------------------------------------------------------------
+	//  It's the second image getter.  
+	//-----------------------------------------------------------------
+	public Image getDie2Image()
+	{
+		return die2.getDieImage();
+	}
+	
+	//-----------------------------------------------------------------
+	//  We shall read both dice
+	//-----------------------------------------------------------------
+	public String toString()
+	{
+		String result = "Die 1 is " + die1.toString() + " die 2 is " + die2.toString();
+		return result;
+	}
+}
